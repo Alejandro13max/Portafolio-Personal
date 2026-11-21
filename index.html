@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0">
+    <meta name="description" content="Portafolio personal de Denis Andrade - Estudiante de Ingeniería de Sistemas UPDS">
+    <title>Denis Andrade | Portafolio PWA</title>
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#8e24aa">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="DenisDev">
+    <meta name="application-name" content="DenisDev">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+/* ==========================================================================
+   PORTAFOLIO DENIS ANDRADE – ESTILOS
+   ========================================================================== */
+:root {
+    --bg-light: #f4f5f9;
+    --bg-dark: #121217;
+    --gengar-purple: #8e24aa;
+    --gengar-light: #ce93d8;
+    --card-light: #ffffff;
+    --card-dark: #1e1e24;
+    --text-dark: #2d3748;
+    --text-light: #f8f9fa;
+}
+
+* { box-sizing: border-box; }
+
+/* ---------- SCROLL GLOBAL CORREGIDO ---------- */
+html {
+    height: 100%;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body {
+    min-height: 100dvh;
+    background-color: var(--bg-light);
+    font-family: 'Outfit', sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-bottom: 90px; /* Espacio para la barra inferior */
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: contain;
+}
+
+body.no-scroll {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    top: var(--scroll-y, 0);
+}
+
+/* ---------- A11Y: FOCO VISIBLE ---------- */
+:focus { outline: none; }
+:focus-visible {
+    outline: 3px solid var(--gengar-purple);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, .card-interactiva:focus-visible {
+    outline: 3px solid var(--gengar-purple);
+    box-shadow: 0 0 0 4px rgba(142, 36, 170, 0.3);
+}
+
+/* ---------- MODO OSCURO ---------- */
+body.modo-oscuro { background-color: var(--bg-dark); }
+body.modo-oscuro .top-bar { background: rgba(18, 18, 23, 0.8); }
+body.modo-oscuro .logo, body.modo-oscuro h1, body.modo-oscuro h2, body.modo-oscuro h3, body.modo-oscuro h5, body.modo-oscuro h6, body.modo-oscuro strong { color: white !important; }
+body.modo-oscuro .text-muted { color: #a0aec0 !important; }
+body.modo-oscuro .btn-icon { background: #1e1e24; color: white; }
+body.modo-oscuro .card-custom, body.modo-oscuro .modal-content { background: var(--card-dark); border-color: rgba(255,255,255,0.05); }
+body.modo-oscuro .bottom-nav { background: rgba(30, 30, 36, 0.95); }
+body.modo-oscuro .menu-flotante { background: var(--card-dark); }
+body.modo-oscuro .menu-flotante ul li a { color: white; }
+body.modo-oscuro .menu-flotante ul li a:hover { background: #2d2d35; }
+body.modo-oscuro .accordion-button { background: transparent; color: white; }
+body.modo-oscuro .form-select, body.modo-oscuro .custom-input { background: #2d2d35; border-color: #444; color: white; }
+body.modo-oscuro .timeline { border-left-color: #444; }
+body.modo-oscuro .bg-gengar-light { background: rgba(142, 36, 170, 0.15); border: 1px solid rgba(142, 36, 170, 0.3); }
+body.modo-oscuro .progress { background-color: #2d2d35; }
+
+/* ---------- ALTO CONTRASTE ---------- */
+body.alto-contraste {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+body.alto-contraste .top-bar, body.alto-contraste .card-custom, 
+body.alto-contraste .bottom-nav, body.alto-contraste .menu-flotante,
+body.alto-contraste .modal-content {
+    background: #111827 !important;
+    border: 2px solid #facc15 !important;
+}
+body.alto-contraste h1, body.alto-contraste h2, body.alto-contraste h3, 
+body.alto-contraste h5, body.alto-contraste h6, body.alto-contraste p,
+body.alto-contraste span, body.alto-contraste strong, body.alto-contraste small {
+    color: #ffffff !important;
+}
+body.alto-contraste .text-gengar { color: #facc15 !important; }
+body.alto-contraste .btn-gengar {
+    background: #facc15 !important;
+    color: #000000 !important;
+    border: 2px solid #ffffff !important;
+}
+body.alto-contraste :focus-visible {
+    outline: 3px solid #facc15 !important;
+}
+
+/* --- TOP BAR --- */
+.top-bar { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); z-index: 1050; transition: 0.3s; }
+.btn-icon { background: white; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: none; font-size: 1.2rem; }
+.text-gengar { color: var(--gengar-purple) !important; }
+
+/* --- BOTTOM NAV --- */
+.bottom-nav {
+    position: fixed; bottom: 15px; left: 10px; right: 10px;
+    background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px);
+    border-radius: 25px; display: flex; justify-content: space-around; align-items: center;
+    padding: 12px 5px; z-index: 1050; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.nav-item {
+    text-decoration: none; color: #a0aec0;
+    display: flex; flex-direction: column; align-items: center;
+    font-size: 0.75rem; font-weight: 700;
+    padding: 8px 12px; border-radius: 15px; transition: 0.3s;
+    min-width: 65px; min-height: 50px;
+}
+.nav-item i { font-size: 1.4rem; margin-bottom: 4px; }
+.nav-item.active { color: var(--gengar-purple); background: rgba(142, 36, 170, 0.1); transform: translateY(-3px); }
+
+/* --- MENÚ HAMBURGUESA --- */
+.menu-flotante {
+    position: fixed; top: 80px; right: 20px; width: 250px;
+    background: white; border-radius: 20px; padding: 20px; z-index: 1100;
+    transform: translateY(-20px) scale(0.95); opacity: 0; pointer-events: none;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.menu-flotante.show { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; }
+.menu-flotante ul li a { display: flex; align-items: center; gap: 15px; padding: 12px; color: var(--text-dark); text-decoration: none; font-weight: 600; border-radius: 10px; transition: 0.2s; }
+.menu-flotante ul li a:hover, .menu-flotante ul li a:focus { background: #f4f5f9; color: var(--gengar-purple); }
+.overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); backdrop-filter: blur(3px); z-index: 1090; display: none; }
+
+/* --- SECCIONES --- */
+.app-seccion { display: none; animation: slideUp 0.4s ease-out forwards; }
+.app-seccion.activa { display: block; }
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* --- TARJETAS --- */
+.card-custom {
+    background: var(--card-light); border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.03); box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    transition: 0.3s;
+}
+.card-custom:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(142, 36, 170, 0.1); }
+.card-interactiva { cursor: pointer; border: 2px solid transparent; }
+.card-interactiva:hover, .card-interactiva:focus-visible { border-color: var(--gengar-purple); transform: translateY(-8px) scale(1.02); }
+
+.icon-box { width: 60px; height: 60px; background: rgba(142, 36, 170, 0.1); color: var(--gengar-purple); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; transition: 0.3s; }
+.card-interactiva:hover .icon-box, .card-interactiva:focus .icon-box { background: var(--gengar-purple); color: white; }
+
+/* --- BOTONES --- */
+.btn-gengar { background: var(--gengar-purple); color: white; border: none; }
+.btn-gengar:hover { background: var(--gengar-light); color: white; transform: scale(1.02); }
+.btn-tactil { min-height: 44px; min-width: 44px; }
+
+/* --- HERO --- */
+.hero-img { height: 350px; object-fit: cover; }
+.hero-image-container { border-radius: 20px; overflow: hidden; }
+
+/* --- TIMELINE --- */
+.timeline { border-left: 2px solid var(--gengar-light); padding-left: 20px; margin-left: 10px; }
+.timeline-item { position: relative; margin-bottom: 25px; }
+.timeline-dot { position: absolute; left: -27px; top: 5px; width: 12px; height: 12px; background: var(--gengar-purple); border-radius: 50%; box-shadow: 0 0 0 4px rgba(142, 36, 170, 0.2); }
+
+/* --- FORMULARIO --- */
+.custom-input { padding: 15px; border-radius: 12px; border: 1px solid #e2e8f0; background: #f8fafc; }
+.custom-input:focus { border-color: var(--gengar-purple); box-shadow: 0 0 0 4px rgba(142, 36, 170, 0.1); }
+.error-msg { display: none; font-size: 0.8rem; }
+
+/* --- EXTRA --- */
+.stat-box { border-left: 3px solid var(--gengar-purple); padding-left: 15px; }
+.bg-gengar-light { background: rgba(142, 36, 170, 0.05); border: 1px solid rgba(142, 36, 170, 0.1); }
+.bg-gengar { background-color: var(--gengar-purple) !important; }
+.progress { background-color: #e2e8f0; border-radius: 10px; }
+.min-vh-75 { min-height: 75vh; }
+
+/* --- PC: scroll estable --- */
+@media (min-width: 768px) {
+    body { overflow-y: scroll; }
+}
+    </style>
+</head>
+<body class="modo-claro">
+
+    <!-- OVERLAY -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- TOP BAR -->
+    <header class="top-bar d-flex justify-content-between align-items-center px-4 py-3 fixed-top">
+        <div class="d-flex align-items-center gap-2">
+            <h1 class="logo m-0 fs-4 fw-bold text-dark">Denis<span class="text-gengar">Dev</span></h1>
+            <span id="estadoRed" class="badge bg-success rounded-pill" style="font-size: 0.6rem;" role="status">En Línea</span>
+        </div>
+        
+        <div class="d-flex gap-2 align-items-center">
+            <!-- BOTONES DE AUDITORÍA (PDF 3 y 4) -->
+            <button id="btnSmokeTest" class="btn btn-sm btn-outline-info btn-tactil d-none d-md-block" title="Smoke Test DOM">
+                <i class="fas fa-vial" aria-hidden="true"></i>
+            </button>
+            <button id="btnAuditarA11Y" class="btn btn-sm btn-outline-warning btn-tactil d-none d-md-block" title="Auditoría Semántica">
+                <i class="fas fa-universal-access" aria-hidden="true"></i>
+            </button>
+            <!-- ALTO CONTRASTE (PDF 1) -->
+            <button id="btnAltoContraste" class="btn btn-icon btn-tactil" aria-pressed="false" aria-label="Activar alto contraste" title="Alto Contraste">
+                <i class="fas fa-adjust" aria-hidden="true"></i>
+            </button>
+            <button id="themeBtn" class="btn btn-icon btn-tactil" aria-label="Cambiar tema">🌙</button>
+            <button id="btnMenu" class="btn btn-icon btn-tactil" aria-label="Abrir menú" aria-expanded="false" aria-controls="menuDesplegable"><i class="fas fa-bars" aria-hidden="true"></i></button>
+        </div>
+    </header>
+
+    <!-- MENÚ HAMBURGUESA -->
+    <nav id="menuDesplegable" class="menu-flotante shadow-lg" aria-hidden="true" aria-label="Menú de navegación rápido">
+        <div class="menu-header text-center pb-3 mb-3 border-bottom">
+            <h5 class="text-gengar fw-bold m-0">Opciones Rápidas</h5>
+            <small class="text-muted" id="textoHidratacion">Cargando...</small>
+        </div>
+        <ul class="list-unstyled m-0 nav flex-column">
+            <li><a href="#" class="nav-link-sidebar" onclick="cambiarSeccion('inicio', this)"><i class="fas fa-home" aria-hidden="true"></i> Inicio</a></li>
+            <li><a href="#" class="nav-link-sidebar" onclick="cambiarSeccion('sobre-mi', this)"><i class="fas fa-user-astronaut" aria-hidden="true"></i> Sobre mí</a></li>
+            <li><a href="#" class="nav-link-sidebar" onclick="cambiarSeccion('horario', this)"><i class="fas fa-calendar-alt" aria-hidden="true"></i> Mi Horario</a></li>
+            <li><a href="#" class="nav-link-sidebar" onclick="cambiarSeccion('favoritos', this)"><i class="fas fa-star" aria-hidden="true"></i> Favoritos</a></li>
+            <li><a href="#" class="nav-link-sidebar" onclick="cambiarSeccion('contacto', this)"><i class="fas fa-envelope" aria-hidden="true"></i> Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="container main-content">
+        
+        <!-- 1. INICIO -->
+        <section id="sec-inicio" class="app-seccion activa pt-5" aria-label="Inicio">
+            <div class="row align-items-center pt-4 min-vh-75">
+                <div class="col-lg-6 mb-4 mb-lg-0 text-center text-lg-start">
+                    <p class="text-gengar fw-bold text-uppercase tracking-wide mb-2">Hola, bienvenido</p>
+                    <h1 class="display-4 fw-bold mb-3 text-dark hero-title">Soy Denis<br><span class="text-gengar">Andrade</span></h1>
+                    <p class="text-muted fs-5 mb-4">Estudiante de la UPDS. Apasionado por el Futsal, el Desarrollo Web y los videojuegos.</p>
+                    <button onclick="cambiarSeccion('contacto', document.querySelector('.bottom-nav .nav-item:nth-child(5)'))" class="btn btn-gengar btn-lg px-5 rounded-pill shadow btn-tactil">Hablemos <i class="fas fa-arrow-right ms-2" aria-hidden="true"></i></button>
+                    
+                    <div class="d-flex gap-4 mt-5 justify-content-center justify-content-lg-start">
+                        <div class="stat-box text-center" tabindex="0">
+                            <h3 class="fw-bold text-gengar m-0">3+</h3>
+                            <small class="text-muted">Años Futsal</small>
+                        </div>
+                        <div class="stat-box text-center" tabindex="0">
+                            <h3 class="fw-bold text-gengar m-0">5+</h3>
+                            <small class="text-muted">Proyectos Web</small>
+                        </div>
+                        <div class="stat-box text-center" tabindex="0">
+                            <h3 class="fw-bold text-gengar m-0">100%</h3>
+                            <small class="text-muted">Dedicación</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image-container shadow-lg">
+                        <div id="inicioCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                            <div class="carousel-inner rounded-4">
+                                <div class="carousel-item active">
+                                    <img src="img/foto1.jpg" class="d-block w-100 hero-img" alt="Denis jugando futsal" loading="lazy">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="img/foto2.jpg" class="d-block w-100 hero-img" alt="Componentes de hardware" loading="lazy">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="img/foto3.jpg" class="d-block w-100 hero-img" alt="Setup gamer" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. SOBRE MI -->
+        <section id="sec-sobre-mi" class="app-seccion pt-5" aria-label="Sobre mí">
+            <div class="text-center mb-4 pt-4">
+                <h2 class="display-6 fw-bold text-dark">Mi Mundo</h2>
+                <p class="text-muted">Haz clic o presiona Enter en una tarjeta para saber más</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card-custom p-4 text-center h-100 card-interactiva" onclick="abrirModal('futsal')" tabindex="0" role="button" aria-label="Ver detalles sobre Futsal">
+                        <div class="icon-box mx-auto mb-3"><i class="fas fa-futbol" aria-hidden="true"></i></div>
+                        <h5 class="fw-bold text-dark">Futsal</h5>
+                        <p class="text-muted small mb-0">Disciplina y campeonatos.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card-custom p-4 text-center h-100 card-interactiva" onclick="abrirModal('gaming')" tabindex="0" role="button" aria-label="Ver detalles sobre Gaming">
+                        <div class="icon-box mx-auto mb-3"><i class="fas fa-gamepad" aria-hidden="true"></i></div>
+                        <h5 class="fw-bold text-dark">Gaming</h5>
+                        <p class="text-muted small mb-0">Estrategia y aventuras.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card-custom p-4 text-center h-100 card-interactiva" onclick="abrirModal('estudio')" tabindex="0" role="button" aria-label="Ver detalles sobre Estudio">
+                        <div class="icon-box mx-auto mb-3"><i class="fas fa-laptop-code" aria-hidden="true"></i></div>
+                        <h5 class="fw-bold text-dark">Estudio</h5>
+                        <p class="text-muted small mb-0">Universidad y código.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card-custom p-4 text-center h-100 card-interactiva" onclick="abrirModal('hardware')" tabindex="0" role="button" aria-label="Ver detalles sobre Hardware">
+                        <div class="icon-box mx-auto mb-3"><i class="fas fa-microchip" aria-hidden="true"></i></div>
+                        <h5 class="fw-bold text-dark">Hardware</h5>
+                        <p class="text-muted small mb-0">Armado y componentes.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card-custom mt-4 p-5 text-center bg-gengar-light">
+                <h3 class="fw-bold text-gengar mb-2">"El éxito es la suma de pequeños esfuerzos repetidos día tras día."</h3>
+                <p class="text-muted m-0">- Robert Collier</p>
+            </div>
+        </section>
+
+        <!-- 3. HORARIO -->
+        <section id="sec-horario" class="app-seccion pt-5" aria-label="Mi Rutina">
+            <div class="text-center mb-4 pt-4">
+                <h2 class="display-6 fw-bold text-dark">Mi Rutina</h2>
+            </div>
+            <div class="row justify-content-center g-4">
+                <div class="col-lg-7">
+                    <div class="card-custom p-4 h-100">
+                        <h5 class="fw-bold text-dark mb-4"><i class="fas fa-clock text-gengar me-2" aria-hidden="true"></i> Horario Semanal</h5>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <h6 class="fw-bold text-dark mb-1">Lunes a Viernes</h6>
+                                <p class="text-muted small mb-0">Mañana: Universidad UPDS | Tarde: Entrenamiento Club | Noche: Estudio y Proyectos</p>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <h6 class="fw-bold text-dark mb-1">Sábado y Domingo</h6>
+                                <p class="text-muted small mb-0">Mañana: Partidos Oficiales de Futsal | Tarde: Entrenamiento | Noche: Descanso</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="card-custom p-4 h-100 d-flex flex-column">
+                        <h5 class="fw-bold text-dark mb-4"><i class="fas fa-tasks text-gengar me-2" aria-hidden="true"></i> Pendientes</h5>
+                        <div class="flex-grow-1">
+                            <div class="d-flex gap-3 align-items-start mb-3">
+                                <i class="fas fa-check-circle text-success mt-1" aria-hidden="true"></i>
+                                <div><strong class="text-dark">Proyecto PWA</strong><br><small class="text-muted">Entregar Portafolio Personal (Lunes)</small></div>
+                            </div>
+                            <div class="d-flex gap-3 align-items-start mb-3">
+                                <i class="fas fa-futbol text-gengar mt-1" aria-hidden="true"></i>
+                                <div><strong class="text-dark">Partido de Futsal</strong><br><small class="text-muted">Domingo 18:00 - Campeonato Local</small></div>
+                            </div>
+                            <div class="d-flex gap-3 align-items-start">
+                                <i class="fas fa-book text-primary mt-1" aria-hidden="true"></i>
+                                <div><strong class="text-dark">Examen UPDS</strong><br><small class="text-muted">Próximo viernes - Diseño Web II</small></div>
+                            </div>
+                        </div>
+                        <div class="mt-3 p-3 bg-gengar-light rounded text-center">
+                            <small class="fw-bold text-gengar">"La disciplina supera al talento."</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. FAVORITOS -->
+        <section id="sec-favoritos" class="app-seccion pt-5" aria-label="Favoritos">
+            <div class="text-center mb-4 pt-4">
+                <h2 class="display-6 fw-bold text-dark">Favoritos</h2>
+            </div>
+            <div class="accordion row g-4" id="accordionFavoritos">
+                <div class="col-md-6">
+                    <div class="accordion-item card-custom border-0 p-0 overflow-hidden">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed fw-bold btn-tactil" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMusica" aria-expanded="false">
+                                <i class="fas fa-music text-gengar me-3" aria-hidden="true"></i> Música (Trap)
+                            </button>
+                        </h2>
+                        <div id="collapseMusica" class="accordion-collapse collapse" data-bs-parent="#accordionFavoritos">
+                            <div class="accordion-body">
+                                <label for="artista" class="visually-hidden">Seleccionar Artista</label>
+                                <select id="artista" class="form-select mb-2">
+                                    <option value="">-- Artista --</option>
+                                    <option value="duki">Duki</option>
+                                    <option value="cro">C.R.O</option>
+                                </select>
+                                <label for="cancion" class="visually-hidden">Seleccionar Canción</label>
+                                <select id="cancion" class="form-select mb-3" disabled>
+                                    <option value="">-- Canción --</option>
+                                </select>
+                                <div id="info-cancion" class="text-gengar small fw-bold p-2 rounded bg-light" style="display:none;" role="status"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="accordion-item card-custom border-0 p-0 overflow-hidden">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed fw-bold btn-tactil" type="button" data-bs-toggle="collapse" data-bs-target="#collapseJuegos" aria-expanded="false">
+                                <i class="fas fa-gamepad text-gengar me-3" aria-hidden="true"></i> Videojuegos
+                            </button>
+                        </h2>
+                        <div id="collapseJuegos" class="accordion-collapse collapse" data-bs-parent="#accordionFavoritos">
+                            <div class="accordion-body">
+                                <div class="d-flex gap-2 flex-wrap mb-3" role="group" aria-label="Filtros de juegos">
+                                    <button class="btn btn-sm btn-outline-dark filter-btn active btn-tactil" data-cat="todos">Todos</button>
+                                    <button class="btn btn-sm btn-outline-dark filter-btn btn-tactil" data-cat="mmorpg">MMORPG</button>
+                                    <button class="btn btn-sm btn-outline-dark filter-btn btn-tactil" data-cat="moba">MOBA</button>
+                                </div>
+                                <div id="contenedor-juegos" class="d-flex flex-column gap-2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-custom mt-4 p-4">
+                <h5 class="fw-bold text-dark mb-4"><i class="fas fa-code text-gengar me-2" aria-hidden="true"></i> Tecnologías que domino</h5>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-between text-dark fw-bold small mb-1"><span>HTML / CSS</span><span>90%</span></div>
+                        <div class="progress" style="height: 8px;"><div class="progress-bar bg-gengar" style="width: 90%;" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div></div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-between text-dark fw-bold small mb-1"><span>JavaScript / jQuery</span><span>80%</span></div>
+                        <div class="progress" style="height: 8px;"><div class="progress-bar bg-gengar" style="width: 80%;" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div></div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-between text-dark fw-bold small mb-1"><span>Bootstrap</span><span>85%</span></div>
+                        <div class="progress" style="height: 8px;"><div class="progress-bar bg-gengar" style="width: 85%;" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div></div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-between text-dark fw-bold small mb-1"><span>Lógica de Programación</span><span>75%</span></div>
+                        <div class="progress" style="height: 8px;"><div class="progress-bar bg-gengar" style="width: 75%;" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. CONTACTO -->
+        <section id="sec-contacto" class="app-seccion pt-5" aria-label="Contacto">
+            <div class="text-center mb-4 pt-4">
+                <h2 class="display-6 fw-bold text-dark">Hablemos</h2>
+            </div>
+            <div class="row justify-content-center g-4">
+                <div class="col-lg-7">
+                    <form id="contact-form" class="card-custom p-4 h-100" novalidate>
+                        <h5 class="fw-bold text-dark mb-4">Envíame un mensaje</h5>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="nombre" class="visually-hidden">Nombre Completo</label>
+                                <input type="text" class="form-control custom-input" id="nombre" placeholder="Nombre *" aria-describedby="error-nombre">
+                                <small class="text-danger error-msg fw-bold" id="error-nombre" role="alert"></small>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="visually-hidden">Correo Electrónico</label>
+                                <input type="email" class="form-control custom-input" id="email" placeholder="Correo *" aria-describedby="error-email">
+                                <small class="text-danger error-msg fw-bold" id="error-email" role="alert"></small>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <button type="submit" class="btn btn-gengar w-100 py-3 rounded-pill btn-tactil">ENVIAR MENSAJE</button>
+                            </div>
+                        </div>
+                        <div id="mensaje-exito" class="alert alert-success text-center mt-3 fw-bold" style="display:none;" role="status">¡Enviado con éxito!</div>
+                    </form>
+                </div>
+                <div class="col-lg-5">
+                    <div class="card-custom p-4 h-100 bg-gengar-light text-center d-flex flex-column justify-content-center">
+                        <h5 class="fw-bold text-gengar mb-4">Información Directa</h5>
+                        <div class="mb-3">
+                            <i class="fas fa-envelope fa-2x text-gengar mb-2" aria-hidden="true"></i>
+                            <p class="text-dark m-0 fw-bold">denis.andrade@upds.edu.bo</p>
+                        </div>
+                        <div class="mb-3">
+                            <i class="fas fa-map-marker-alt fa-2x text-gengar mb-2" aria-hidden="true"></i>
+                            <p class="text-dark m-0 fw-bold">La Paz, Bolivia</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-phone fa-2x text-gengar mb-2" aria-hidden="true"></i>
+                            <p class="text-dark m-0 fw-bold">+591 700 00000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL DE INFORMACIÓN -->
+    <div class="modal fade" id="modalInfo" tabindex="-1" aria-hidden="true" aria-labelledby="modalTitulo">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content card-custom border-0">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold text-gengar" id="modalTitulo">Título</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body text-dark" id="modalContenido">
+                    <!-- Aquí JS inyectará el texto -->
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-gengar w-100 rounded-pill" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BARRA INFERIOR -->
+    <nav class="bottom-nav shadow-lg" aria-label="Navegación inferior">
+        <a href="#" class="nav-item active" onclick="cambiarSeccion('inicio', this)" aria-label="Ir a inicio">
+            <i class="fas fa-rocket" aria-hidden="true"></i><span>Inicio</span>
+        </a>
+        <a href="#" class="nav-item" onclick="cambiarSeccion('sobre-mi', this)" aria-label="Ir a sobre mí">
+            <i class="fas fa-globe" aria-hidden="true"></i><span>Mi Mundo</span>
+        </a>
+        <a href="#" class="nav-item" onclick="cambiarSeccion('horario', this)" aria-label="Ir a rutina">
+            <i class="fas fa-calendar-check" aria-hidden="true"></i><span>Rutina</span>
+        </a>
+        <a href="#" class="nav-item" onclick="cambiarSeccion('favoritos', this)" aria-label="Ir a favoritos">
+            <i class="fas fa-fire" aria-hidden="true"></i><span>Favoritos</span>
+        </a>
+        <a href="#" class="nav-item" onclick="cambiarSeccion('contacto', this)" aria-label="Ir a contacto">
+            <i class="fas fa-paper-plane" aria-hidden="true"></i><span>Contacto</span>
+        </a>
+    </nav>
+
+    <!-- SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+/* ==========================================================================
+   PORTAFOLIO DENIS ANDRADE – LÓGICA
+   ========================================================================== */
+
+// ==========================================
+// 1. NAVEGACIÓN TIPO APP
+// ==========================================
+function cambiarSeccion(idSeccion, elementoBoton = null) {
+    document.querySelectorAll('.app-seccion').forEach(sec => sec.classList.remove('activa'));
+    const sec = document.getElementById('sec-' + idSeccion);
+    if (sec) sec.classList.add('activa');
+    
+    if (elementoBoton) {
+        document.querySelectorAll('.bottom-nav .nav-item').forEach(nav => nav.classList.remove('active'));
+        elementoBoton.classList.add('active');
+    }
+
+    $('#menuDesplegable').removeClass('show').attr('aria-hidden', 'true');
+    $('#overlay').fadeOut(200);
+    cerrarMenuScroll();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ==========================================
+// 2. LÓGICA DE MODALES (Sobre Mí)
+// ==========================================
+const dataModales = {
+    'futsal': {
+        titulo: '⚽ Mi Pasión: El Futsal',
+        contenido: 'Juego futsal a nivel semiprofesional. Actualmente entreno con mi club todas las tardes. He participado en campeonatos locales de La Paz, destacando en la posición de ala. Me encanta la disciplina, la velocidad del juego y el trabajo en equipo. Mi meta este año es ganar el torneo de la asociación.'
+    },
+    'gaming': {
+        titulo: '🎮 Mi Mundo Gamer',
+        contenido: 'Soy un jugador estratégico. Mis juegos favoritos son World of Warcraft (MMORPG) donde exploro mazmorras con amigos; League of Legends (MOBA) para partidas competitivas; y PES 2026, porque el fútbol siempre está presente en mi vida. Suelo jugar en PC durante las noches después de estudiar.'
+    },
+    'estudio': {
+        titulo: '💻 Mi Formación Académica',
+        contenido: 'Soy estudiante de Ingeniería de Sistemas en la UPDS (Sede La Paz). Me apasiona el Desarrollo Web y la creación de interfaces. Actualmente me encuentro aprendiendo HTML, CSS, JavaScript, jQuery y arquitecturas PWA. Mi objetivo es convertirme en un Desarrollador Full-Stack.'
+    },
+    'hardware': {
+        titulo: '🔧 Hardware y PCs',
+        contenido: 'Me encanta armar computadoras de cero. Sé cómo elegir componentes (procesador, tarjeta madre, RAM, GPU) según el presupuesto y el uso. Me gusta optimizar sistemas operativos y hacer mantenimiento para que las PCs rindan al máximo.'
+    }
+};
+
+function abrirModal(tipo) {
+    const data = dataModales[tipo];
+    if (data) {
+        document.getElementById('modalTitulo').innerText = data.titulo;
+        document.getElementById('modalContenido').innerText = data.contenido;
+        const modal = new bootstrap.Modal(document.getElementById('modalInfo'));
+        modal.show();
+    }
+}
+
+// ==========================================
+// 3. MENÚ HAMBURGUESA Y SCROLL
+// ==========================================
+function abrirMenuScroll() {
+    const y = window.scrollY;
+    document.body.style.setProperty('--scroll-y', `-${y}px`);
+    document.body.classList.add('no-scroll');
+}
+
+function cerrarMenuScroll() {
+    const y = parseInt(getComputedStyle(document.body).getPropertyValue('--scroll-y') || '0', 10);
+    document.body.classList.remove('no-scroll');
+    document.body.style.removeProperty('--scroll-y');
+    window.scrollTo(0, Math.abs(y));
+}
+
+$(document).ready(function() {
+    $('#btnMenu').on('click', function() {
+        let estaAbierto = $('#menuDesplegable').hasClass('show');
+        if (!estaAbierto) {
+            $('#menuDesplegable').addClass('show').attr('aria-hidden', 'false');
+            $(this).attr('aria-expanded', 'true');
+            $('#overlay').fadeIn(200);
+            abrirMenuScroll();
+            
+            $('#textoHidratacion').text('Cargando eventos...');
+            setTimeout(() => {
+                $('#textoHidratacion').text('✅ Menú Hidratado').css('color', '#198754');
+            }, 500);
+        } else {
+            cerrarMenu();
+        }
+    });
+
+    $('#overlay').on('click', cerrarMenu);
+
+    function cerrarMenu() {
+        $('#menuDesplegable').removeClass('show').attr('aria-hidden', 'true');
+        $('#btnMenu').attr('aria-expanded', 'false');
+        $('#overlay').fadeOut(200);
+        $('#textoHidratacion').text('').css('color', 'inherit'); 
+        cerrarMenuScroll();
+    }
+});
+
+// ==========================================
+// 4. MODO OSCURO Y ALTO CONTRASTE
+// ==========================================
+$(document).ready(function() {
+    let modoGuardado = localStorage.getItem('modoOscuroActivo');
+    if (modoGuardado === 'true') {
+        document.body.classList.add('modo-oscuro');
+        document.body.classList.remove('modo-claro');
+        $('#themeBtn').text('☀️');
+    }
+
+    $('#themeBtn').off('click').on('click', function() {
+        document.body.classList.toggle('modo-oscuro');
+        document.body.classList.toggle('modo-claro');
+        let esOscuro = document.body.classList.contains('modo-oscuro');
+        $(this).text(esOscuro ? '☀️' : '🌙');
+        localStorage.setItem('modoOscuroActivo', esOscuro);
+    });
+
+    const btnAC = document.getElementById('btnAltoContraste');
+    if (localStorage.getItem('altoContrasteActivo') === 'true') {
+        document.body.classList.add('alto-contraste');
+        btnAC.setAttribute('aria-pressed', 'true');
+    }
+    btnAC.addEventListener('click', () => {
+        const activo = document.body.classList.toggle('alto-contraste');
+        btnAC.setAttribute('aria-pressed', activo ? 'true' : 'false');
+        localStorage.setItem('altoContrasteActivo', activo);
+    });
+});
+
+// ==========================================
+// 5. LÓGICA DE MÚSICA Y JUEGOS
+// ==========================================
+const selectArtista = document.getElementById('artista');
+const selectCancion = document.getElementById('cancion');
+const infoCancion = document.getElementById('info-cancion');
+const musicaDB = {
+    duki: [ { titulo: "Goteo", anio: 2019 }, { titulo: "Rockstar", anio: 2018 } ],
+    cro: [ { titulo: "Ella", anio: 2021 }, { titulo: "Trap Life", anio: 2019 } ]
+};
+
+if (selectArtista) {
+    selectArtista.addEventListener('change', (e) => {
+        const artista = e.target.value;
+        selectCancion.innerHTML = '<option value="">-- Canción --</option>';
+        if (artista) {
+            selectCancion.disabled = false;
+            musicaDB[artista].forEach(cancion => {
+                const option = document.createElement('option');
+                option.value = cancion.titulo;
+                option.textContent = cancion.titulo; 
+                option.dataset.anio = cancion.anio;
+                selectCancion.appendChild(option);
+            });
+        } else { selectCancion.disabled = true; infoCancion.style.display = 'none'; }
+    });
+
+    selectCancion.addEventListener('change', (e) => {
+        const titulo = e.target.value;
+        if (titulo) {
+            const anio = e.target.options[e.target.selectedIndex].dataset.anio;
+            infoCancion.textContent = `▶ ${titulo} (${anio})`;
+            infoCancion.style.display = 'block';
+        } else { infoCancion.style.display = 'none'; }
+    });
+}
+
+const juegosData = [
+    { nombre: "World of Warcraft", cat: "mmorpg" }, 
+    { nombre: "League of Legends", cat: "moba" }, 
+    { nombre: "PES 2026", cat: "deportes" }
+];
+const contenedorJuegos = document.getElementById('contenedor-juegos');
+const botonesFiltro = document.querySelectorAll('.filter-btn');
+
+function renderizarJuegos(filtro) {
+    if (!contenedorJuegos) return;
+    contenedorJuegos.innerHTML = ''; 
+    const filtrados = filtro === 'todos' ? juegosData : juegosData.filter(j => j.cat === filtro);
+    filtrados.forEach(juego => {
+        const div = document.createElement('div');
+        div.className = 'p-2 rounded bg-light mb-2 border-start border-3';
+        div.style.borderColor = 'var(--gengar-purple)';
+        div.innerHTML = `<h6 class="mb-0 fw-bold text-dark" style="font-size:0.9rem;">${juego.nombre}</h6>`;
+        contenedorJuegos.appendChild(div);
+    });
+}
+botonesFiltro.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        botonesFiltro.forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        renderizarJuegos(e.target.dataset.cat);
+    });
+});
+if (contenedorJuegos) renderizarJuegos('todos');
+
+// ==========================================
+// 6. VALIDACIÓN FORMULARIO Y RED
+// ==========================================
+const form = document.getElementById('contact-form');
+if (form) {
+    form.addEventListener('submit', (e) => {
+        e.preventDefault(); 
+        let valido = true;
+        if (document.getElementById('nombre').value.trim().length < 3) { 
+            document.getElementById('error-nombre').textContent="Mínimo 3 letras"; 
+            document.getElementById('error-nombre').style.display='block'; 
+            valido=false; 
+        } else { document.getElementById('error-nombre').style.display='none'; }
+        
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('email').value)) { 
+            document.getElementById('error-email').textContent="Correo inválido"; 
+            document.getElementById('error-email').style.display='block'; 
+            valido=false; 
+        } else { document.getElementById('error-email').style.display='none'; }
+
+        if (valido) {
+            document.getElementById('mensaje-exito').style.display = 'block';
+            form.reset();
+            setTimeout(() => { document.getElementById('mensaje-exito').style.display = 'none'; }, 4000);
+        }
+    });
+}
+
+function actualizarEstadoRed() {
+    if (navigator.onLine) { $('#estadoRed').text('En Línea').css({'background':'#198754'}); } 
+    else { $('#estadoRed').text('Offline').css({'background':'#ffc107', 'color':'black'}); }
+}
+$(window).on('online offline', actualizarEstadoRed);
+actualizarEstadoRed();
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(err => console.log(err)));
+}
+
+// ==========================================
+// 7. TECLADO: FLECHAS Y ACCESIBILIDAD TOTAL
+// ==========================================
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+        const modalEl = document.getElementById('modalInfo');
+        if (modalEl.classList.contains('show')) {
+            bootstrap.Modal.getInstance(modalEl)?.hide();
+        }
+        if ($('#menuDesplegable').hasClass('show')) {
+            $('#btnMenu').click();
+        }
+    }
+
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('card-interactiva')) {
+        e.preventDefault();
+        e.target.click();
+    }
+
+    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+        
+        // Tarjetas interactivas
+        const tarjetas = Array.from(document.querySelectorAll('.card-interactiva'));
+        const indexTarjeta = tarjetas.indexOf(document.activeElement);
+        if (indexTarjeta > -1) {
+            e.preventDefault();
+            let nextIndex = indexTarjeta;
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextIndex = Math.min(indexTarjeta + 1, tarjetas.length - 1);
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') nextIndex = Math.max(indexTarjeta - 1, 0);
+            tarjetas[nextIndex].focus();
+            return;
+        }
+
+        // Filtros de juegos
+        const botonesFiltroArr = Array.from(document.querySelectorAll('.filter-btn'));
+        const indexFiltro = botonesFiltroArr.indexOf(document.activeElement);
+        if (indexFiltro > -1) {
+            e.preventDefault();
+            let nextIndex = indexFiltro;
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextIndex = Math.min(indexFiltro + 1, botonesFiltroArr.length - 1);
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') nextIndex = Math.max(indexFiltro - 1, 0);
+            botonesFiltroArr[nextIndex].focus();
+            return;
+        }
+
+        // Bottom Nav
+        const navItems = Array.from(document.querySelectorAll('.bottom-nav .nav-item'));
+        const indexNav = navItems.indexOf(document.activeElement);
+        if (indexNav > -1) {
+            e.preventDefault();
+            let nextIndex = indexNav;
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextIndex = Math.min(indexNav + 1, navItems.length - 1);
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') nextIndex = Math.max(indexNav - 1, 0);
+            navItems[nextIndex].focus();
+            return;
+        }
+    }
+});
+
+// ==========================================
+// 8. AUDITORÍAS (SMOKE TEST Y A11Y)
+// ==========================================
+document.getElementById('btnSmokeTest')?.addEventListener('click', () => {
+    const imgsSinAlt    = document.querySelectorAll('img:not([alt]), img[alt=""]').length;
+    const enlacesVacios = document.querySelectorAll('a[href=""], a:not([href])').length;
+    const botones       = document.querySelectorAll('button').length;
+    alert(`Smoke Test OK · Botones: ${botones} | Imágenes sin alt: ${imgsSinAlt} | Enlaces vacíos: ${enlacesVacios}`);
+});
+
+document.getElementById('btnAuditarA11Y')?.addEventListener('click', () => {
+    const zonas  = document.querySelectorAll('header, nav, main, article, footer, section').length;
+    const sinAlt = document.querySelectorAll('img:not([alt]), img[alt=""]').length;
+    const labels = document.querySelectorAll('label[for]').length;
+    alert(`Auditoría en vivo: ${zonas} etiquetas semánticas HTML5 | Imágenes sin alt: ${sinAlt} | Labels asociados: ${labels}.`);
+});
+    </script>
+</body>
+</html>

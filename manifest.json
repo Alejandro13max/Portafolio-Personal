@@ -1,0 +1,48 @@
+{
+    "short_name": "DenisPWA",
+    "name": "Portafolio Denis Andrade",
+    "description": "Portafolio personal de Denis Andrade - Estudiante de Ingeniería de Sistemas UPDS",
+    "lang": "es",
+    "dir": "ltr",
+    "icons": [
+        {
+            "src": "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+            "type": "image/png",
+            "sizes": "192x192",
+            "purpose": "any"
+        },
+        {
+            "src": "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any maskable"
+        }
+    ],
+    "start_url": "./index.html",
+    "scope": "./",
+    "display": "standalone",
+    "orientation": "any",
+    "background_color": "#15161e",
+    "theme_color": "#8e24aa",
+    "categories": [
+        "personal",
+        "portfolio",
+        "education"
+    ],
+    "shortcuts": [
+        {
+            "name": "Sobre mí",
+            "short_name": "Sobre mí",
+            "description": "Ir directo a mi información personal",
+            "url": "./index.html#sobre-mi",
+            "icons": [{ "src": "https://cdn-icons-png.flaticon.com/512/3135/3135715.png", "sizes": "192x192" }]
+        },
+        {
+            "name": "Contacto",
+            "short_name": "Contacto",
+            "description": "Enviar un mensaje directo",
+            "url": "./index.html#contacto",
+            "icons": [{ "src": "https://cdn-icons-png.flaticon.com/512/3135/3135715.png", "sizes": "192x192" }]
+        }
+    ]
+}
